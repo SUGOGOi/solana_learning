@@ -1,0 +1,17 @@
+{
+  "name": "solana_tutorial",
+  "version": "1.0.0",
+  "main": "module1.js",
+  "type":"module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@solana-developers/helpers": "^2.8.1",
+    "@solana/web3.js": "^1.98.2",
+    "dotenv": "^16.5.0"
+  }
+}
