@@ -15,8 +15,8 @@ dotenv.config();
 const connection = new Connection(clusterApiUrl("devnet"));
 const senderKeyPair = getKeypairFromEnvironment("SECRET_KEY");
 
-console.log(`public key: ${senderKeyPair.publicKey.toBase58()}`);
-console.log(`private key: ${senderKeyPair.secretKey}`);
+// console.log(`public key: ${senderKeyPair.publicKey.toBase58()}`);
+// console.log(`private key: ${senderKeyPair.secretKey}`);
 
 const sender = senderKeyPair.publicKey;
 const recipient = new PublicKey(process.env.PUBLIC_KEY_CSM23036);
