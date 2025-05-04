@@ -11,13 +11,151 @@
   justify-content: center;
 }
 
-.main {
-  border: 1px solid red;
-  border-radius: 15px;
-  width: 400px;
-  height: 400px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
+.solana-dashboard {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: "Inter", sans-serif;
+  color: #333;
+
+  .dashboard-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: #9945ff;
+    text-align: center;
+  }
+
+  .wallet-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 3rem;
+    padding: 1.5rem;
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+
+    // Styling for the wallet adapter button is handled by the component
+
+    .balance-button {
+      margin: 1.5rem 0;
+      padding: 0.75rem 1.5rem;
+      background-color: #14f195;
+      color: #333;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+
+      &:hover {
+        background-color: #0dd584;
+        transform: translateY(-2px);
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
+    }
+
+    .balance-display {
+      font-size: 1.2rem;
+      margin-top: 1rem;
+
+      .balance-amount {
+        font-weight: 700;
+        color: #9945ff;
+      }
+    }
+  }
+
+  .transaction-section {
+    padding: 2rem;
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      color: #333;
+    }
+
+    .send-sol-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        label {
+          font-size: 0.9rem;
+          font-weight: 600;
+          color: #444;
+        }
+
+        input {
+          padding: 0.75rem 1rem;
+          border: 1px solid #ddd;
+          border-radius: 8px;
+          font-size: 1rem;
+          transition: all 0.2s ease;
+
+          &:focus {
+            outline: none;
+            border-color: #9945ff;
+            box-shadow: 0 0 0 2px rgba(153, 69, 255, 0.1);
+          }
+
+          &::placeholder {
+            color: #aaa;
+          }
+        }
+      }
+
+      .send-button {
+        margin-top: 0.5rem;
+        padding: 0.75rem 1.5rem;
+        background-color: #9945ff;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        &:hover {
+          background-color: #8035e8;
+          transform: translateY(-2px);
+        }
+
+        &:active {
+          transform: translateY(0);
+        }
+      }
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .solana-dashboard {
+    padding: 1rem;
+
+    .dashboard-title {
+      font-size: 2rem;
+    }
+
+    .wallet-section,
+    .transaction-section {
+      padding: 1rem;
+    }
+  }
 }

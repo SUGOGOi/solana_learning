@@ -1,5 +1,5 @@
 import "./App.scss";
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import {
   ConnectionProvider,
@@ -12,6 +12,7 @@ import {
   WalletMultiButton,
 } from "@solana/wallet-adapter-react-ui";
 import { useBalanceDisplay } from "./components/useBalanceDisplay.ts";
+import { useSendTransaction } from "./components/useSendTransaction.ts";
 import toast from "react-hot-toast";
 
 const App = () => {
@@ -36,6 +37,18 @@ export default App;
 
 const WalletContent = () => {
   const { balance, updateBalance, errorMessage } = useBalanceDisplay();
+  const [recipientAddress, setRecipientAddress] = useState<string>("");
+  const [amountValue, setAmountValue] = useState<string>("");
+
+  const { sendSol } = useSendTransaction();
+
+  const handleSendSol = () => {
+    if (amountValue && recipientAddress) {
+      sendSol(amountValue, recipientAddress);
+    } else {
+      toast.error("Please provide Amount and Recipient Public key");
+    }
+  };
 
   useEffect(() => {
     if (errorMessage) {
@@ -45,11 +58,53 @@ const WalletContent = () => {
   }, [errorMessage]);
 
   return (
-    <div className="main">
-      <h1>Solana Testing</h1>
-      <WalletMultiButton />
-      <button onClick={updateBalance}>See Balance</button>
-      <p>Balance: {balance !== null ? balance : "N/A"} SOL</p>
+    <div className="solana-dashboard">
+      <h1 className="dashboard-title">Solana Testing</h1>
+
+      <div className="wallet-section">
+        <WalletMultiButton />
+        <button className="balance-button" onClick={updateBalance}>
+          See Balance
+        </button>
+        <p className="balance-display">
+          Balance:{" "}
+          <span className="balance-amount">
+            {balance !== null ? balance : "N/A"}
+          </span>{" "}
+          SOL
+        </p>
+      </div>
+
+      <div className="transaction-section">
+        <h2 className="section-title">Send SOL</h2>
+        <div className="send-sol-form">
+          <div className="form-group">
+            <label htmlFor="recipient-address">Recipient Address</label>
+            <input
+              id="recipient-address"
+              type="text"
+              placeholder="Enter wallet address"
+              value={recipientAddress}
+              onChange={(e) => setRecipientAddress(e.target.value)}
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="sol-amount">Amount (SOL)</label>
+            <input
+              id="sol-amount"
+              type="text"
+              placeholder="0.01"
+              value={amountValue}
+              onChange={(e) => setAmountValue(e.target.value)}
+            />
+          </div>
+
+          <button className="send-button" onClick={handleSendSol}>
+            Send SOL
+          </button>
+        </div>
+      </div>
     </div>
   );
 };

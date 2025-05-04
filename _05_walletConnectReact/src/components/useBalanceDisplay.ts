@@ -7,8 +7,10 @@ export const useBalanceDisplay = () => {
   const [errorMessage, setErrorMessage] = useState<string>("");
   const { connection } = useConnection();
   const { publicKey } = useWallet();
+  console.log("hii from balance display");
 
   const updateBalance = async () => {
+    console.log("hii from update bal");
     if (!connection || !publicKey) {
       setErrorMessage("Wallet is not connected");
       console.log("Wallet is not connected");
